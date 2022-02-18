@@ -20,7 +20,7 @@ namespace GradeBook.GradeBooks
                 throw new InvalidOperationException("Ranked-grading requires a minimum of 5 students to work");
             }
 
-            double percentile = Students.Count / 4;
+            double percentile = Math.Ceiling(Students.Count / 5.0);
             List<double> grades = new List<double>();
             Students.ForEach(delegate(Student student){ grades.Add(student.Grades.Average()); });
             grades.Sort();
