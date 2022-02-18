@@ -8,7 +8,7 @@ namespace GradeBook.GradeBooks
     {
         public StandardGradeBook(string name) : base(name)
         {
-            type = GradeBook.Enums.GradeBookType.Standard;
+            Type = GradeBook.Enums.GradeBookType.Standard;
         }
     }
 }
