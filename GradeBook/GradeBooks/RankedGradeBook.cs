@@ -29,7 +29,7 @@ namespace GradeBook.GradeBooks
             List<char> gradeLetters = new List<char>() { 'A', 'B', 'C', 'D', 'F' };
             for (int i = 0; i < gradeLetters.Count; i++)
             {
-                int target = percentile * (i + 1);
+                int target = percentile * (i + 1)-1;
                 if (target >= grades.Count - 1 || grades[target] < averageGrade)
                 {
                     return gradeLetters[i];
