@@ -20,16 +20,19 @@ namespace GradeBook.GradeBooks
                 throw new InvalidOperationException("Ranked-grading requires a minimum of 5 students to work");
             }
 
-            double percentile = Math.Ceiling(Students.Count / 5.0);
             List<double> grades = new List<double>();
-            Students.ForEach(delegate(Student student){ grades.Add(student.Grades.Average()); });
+            Students.ForEach(delegate(Student student){ grades.Add(student.AverageGrade); });
+            int percentile = (int)Math.Ceiling(grades.Count / 5.0);
             grades.Sort();
+            grades.Reverse();
 
             List<char> gradeLetters = new List<char>() { 'A', 'B', 'C', 'D', 'F' };
-            for(int i = 0; i < grades.Count; i++)
+            for (int i = 0; i < gradeLetters.Count; i++)
             {
-                if(i == grades.Count - 1 || averageGrade > grades[(int)Math.Round(percentile * (i+1))])
+                int target = percentile * (i + 1);
+                if (target >= grades.Count - 1 || grades[target] <= averageGrade)
                 {
+                    //Console.WriteLine(percentile+","+i+","+grades[target]);
                     return gradeLetters[i];
                 }
             }
