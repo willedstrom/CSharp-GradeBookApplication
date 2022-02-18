@@ -22,18 +22,25 @@ namespace GradeBook.GradeBooks
 
             List<double> grades = new List<double>();
             Students.ForEach(delegate(Student student){ grades.Add(student.AverageGrade); });
-            int percentile = (int)Math.Ceiling(grades.Count / 5.0);
+            int threshold = (int)Math.Ceiling(grades.Count * 0.2);
             grades.Sort();
             grades.Reverse();
 
-            List<char> gradeLetters = new List<char>() { 'A', 'B', 'C', 'D', 'F' };
-            for (int i = 0; i < gradeLetters.Count; i++)
+            if (grades[threshold - 1] <= averageGrade)
             {
-                int target = percentile * (i + 1)-1;
-                if (i >= gradeLetters.Count - 1 || grades[target] < averageGrade)
-                {
-                    return gradeLetters[i];
-                }
+                return 'A';
+            }
+            else if (grades[threshold * 2 - 1] <= averageGrade)
+            {
+                return 'B';
+            }
+            else if (grades[threshold * 3 - 1] <= averageGrade)
+            {
+                return 'C';
+            }
+            else if (grades[threshold * 4 - 1] <= averageGrade)
+            {
+                return 'D';
             }
             return 'F';
         }
