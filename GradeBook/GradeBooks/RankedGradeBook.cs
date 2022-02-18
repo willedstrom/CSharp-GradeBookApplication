@@ -30,9 +30,8 @@ namespace GradeBook.GradeBooks
             for (int i = 0; i < gradeLetters.Count; i++)
             {
                 int target = percentile * (i + 1);
-                if (target >= grades.Count - 1 || grades[target] <= averageGrade)
+                if (target >= grades.Count - 1 || grades[target] < averageGrade)
                 {
-                    //Console.WriteLine(percentile+","+i+","+grades[target]);
                     return gradeLetters[i];
                 }
             }
